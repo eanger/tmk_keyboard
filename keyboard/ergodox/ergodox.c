@@ -55,14 +55,14 @@ void init_ergodox(void)
     DDRB  &= ~(1<<4);  // set B(4) as input
     PORTB &= ~(1<<4);  // set B(4) internal pull-up disabled
 
-    // unused pins - C7, D4, D5, D7, E6
+    // unused pins - C7, D4, D7, F0
     // set as input with internal pull-ip enabled
-    DDRC  &= ~(1<<7);
-    DDRD  &= ~(1<<7 | 1<<5 | 1<<4);
-    DDRE  &= ~(1<<6);
-    PORTC |=  (1<<7);
-    PORTD |=  (1<<7 | 1<<5 | 1<<4);
-    PORTE |=  (1<<6);
+    DDRC  &= ~(1<<7 | 1<<6);
+    DDRD  &= ~(1<<7 | 1<<4);
+    DDRF  &= ~(1<<0);
+    PORTC |=  (1<<7 | 1<<6);
+    PORTD |=  (1<<7 | 1<<4);
+    PORTF |=  (1<<0);
 }
 
 void ergodox_blink_all_leds(void)

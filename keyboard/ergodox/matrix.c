@@ -233,7 +233,7 @@ uint8_t matrix_key_count(void)
  *
  * Teensy
  * col: 0   1   2   3   4   5
- * pin: F0  F1  F4  F5  F6  F7 
+ * pin: E6  F1  F4  F5  F6  F7 
  *
  * MCP23018
  * col: 0   1   2   3   4   5
@@ -246,8 +246,10 @@ static void  init_cols(void)
 
     // init on teensy
     // Input with pull-up(DDR:0, PORT:1)
-    DDRF  &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<1 | 1<<0);
-    PORTF |=  (1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<1 | 1<<0);
+    DDRF  &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<1);
+    DDRE  &= ~(1<<6);
+    PORTF |=  (1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<1);
+    PORTE |=  (1<<6);
 }
 
 static matrix_row_t read_cols(uint8_t row)
@@ -270,7 +272,7 @@ static matrix_row_t read_cols(uint8_t row)
         _delay_us(30);  // without this wait read unstable value.
         // read from teensy
         return
-            (PINF&(1<<0) ? 0 : (1<<0)) |
+            (PINE&(1<<6) ? 0 : (1<<0)) |
             (PINF&(1<<1) ? 0 : (1<<1)) |
             (PINF&(1<<4) ? 0 : (1<<2)) |
             (PINF&(1<<5) ? 0 : (1<<3)) |
@@ -283,7 +285,7 @@ static matrix_row_t read_cols(uint8_t row)
  *
  * Teensy
  * row: 7   8   9   10  11  12  13
- * pin: B0  B1  B2  B3  D2  D3  C6
+ * pin: B0  B1  B2  B3  D2  D3  D5
  *
  * MCP23018
  * row: 0   1   2   3   4   5   6
@@ -309,10 +311,8 @@ static void unselect_rows(void)
     // Hi-Z(DDR:0, PORT:0) to unselect
     DDRB  &= ~(1<<0 | 1<<1 | 1<<2 | 1<<3);
     PORTB &= ~(1<<0 | 1<<1 | 1<<2 | 1<<3);
-    DDRD  &= ~(1<<2 | 1<<3);
-    PORTD &= ~(1<<2 | 1<<3);
-    DDRC  &= ~(1<<6);
-    PORTC &= ~(1<<6);
+    DDRD  &= ~(1<<2 | 1<<3 | 1<<5);
+    PORTD &= ~(1<<2 | 1<<3 | 1<<5);
 }
 
 static void select_row(uint8_t row)
@@ -361,8 +361,8 @@ static void select_row(uint8_t row)
                 PORTD &= ~(1<<3);
                 break;
             case 13:
-                DDRC  |= (1<<6);
-                PORTC &= ~(1<<6);
+                DDRD  |= (1<<5);
+                PORTD &= ~(1<<5);
                 break;
         }
     }
