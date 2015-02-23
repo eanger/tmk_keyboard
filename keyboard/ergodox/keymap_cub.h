@@ -102,13 +102,13 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  FN5, FN6, FN7,
         // right hand
              MINS,6,   7,   8,   9,   0,   EQL,
-             A ,Y,   U,   I,   O,   P,   LBRC,
+             FN23,Y,   U,   I,   O,   P,   LBRC,
                   H,   J,   K,   L,   SCLN,FN15,
-             B , N,   M,   COMM,DOT, SLSH,FN16,
+             END, N,   M,   COMM,DOT, SLSH,FN16,
                        LEFT,UP,  DOWN,RGHT,FN22,
-        C,D,
-        E,
-        F, G, H
+        PGUP,DEL,
+        PGDN,
+        FN8, FN9, FN10
     ),
 
     KEYMAP(  // Layer1: Workman layout, leftled:all
