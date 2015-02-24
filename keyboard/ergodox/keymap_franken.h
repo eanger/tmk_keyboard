@@ -4,20 +4,20 @@
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |   `~   |   1  |   2  |   3  |   4  |   5  |   6  |           |   7  |   8  |   9  |   0  |  -_  |  =+  |  BkSp  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Tab    |   Q  |   W  |   E  |   R  |   T  | ~L5  |           | ~L6  |   Y  |   U  |   I  |   O  |   P  |   [    |
+ * | Tab    |   Q  |   W  |   E  |   R  |   T  |  L0  |           |   \  |   Y  |   U  |   I  |   O  |   P  |   [    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | LCtrl  |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '    |
- * |--------+------+------+------+------+------|  L0  |           | ~L7  |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------|  L1  |           |  L2  |------+------+------+------+------+--------|
  * | LShft  |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  |   ]    |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | LCtrl| LGUI | Caps | LAlt | LAlt |                                       |  Lft |  Dn  |  Up  | Rght | ~L6  |
+ *   | LCtrl| LGUI | Caps | Calc | LAlt |                                       |  Lft |  Dn  |  Up  | Rght | Enter|
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        | +L2  | Home |       | PgUp | Del  |
+ *                                        | LCTL | LALT |       | RALT | RCTL |
  *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |  Home|       | PgUp |      |      |
+ *                                 | Space|  ESC |------|       |------| Enter| Space|
  *                                 |      |      |  End |       | PgDn |      |      |
- *                                 | BkSp |  ESC |------|       |------| Enter| Space|
- *                                 |      |      |  Spc |       | Ins  |      |      |
  *                                 `--------------------'       `--------------------'
  *
  */
@@ -28,28 +28,28 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // layer 0 : default
         // left hand
         GRAVE, 1,   2,   3,   4,   5,   6,
-        TAB, Q,   W,   E,   R,   T,   FN2,
+        TAB, Q,   W,   E,   R,   T,   FN1,
         LCTL, A,   S,   D,   F,   G,
-        LSFT,Z,   X,   C,   V,   B,   FN1,
-        LCTL,LGUI, BSLS,LEFT,LALT,
+        LSFT,Z,   X,   C,   V,   B,   FN2,
+        LCTL,LGUI,CAPS,CALC,LALT,
                                       LCTL,LALT,
                                            HOME,
-                                 BSPC,ESC, END,
+                                 SPC,ESC, END,
         // right hand
              7, 8,   9,   0,   MINUS,   PPLS,   BSPC,
-             LBRC,Y,   U,   I,   O,   P,   LBRC,
+             BSLS,Y,   U,   I,   O,   P,   LBRC,
                   H,   J,   K,   L,   SCLN,QUOT,
-             FN1, N,   M,   COMM,DOT, SLSH,RBRC,
-                       LEFT,DOWN,UP,  RGHT,RGUI,
-        A,RCTL,
+             FN3, N,   M,   COMM,DOT, SLSH,RBRC,
+                       LEFT,DOWN,UP,  RGHT,ENT,
+        RALT,RCTL,
         PGUP,
         PGDN,ENT, SPC
     ),
 
     KEYMAP(  // layer 1 : function and symbol keys
         // left hand
-        TRNS,F1,  F2,  F3,  F4,  F5,  F11,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,FN4,
+        TRNS,F1,  F2,  F3,  F4,  F5,  F6,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -57,17 +57,39 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            TRNS,
                                  TRNS,TRNS,TRNS,
         // right hand
-             F12, F6,  F7,  F8,  F9,  F10, TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                  TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                       TRNS,TRNS,TRNS,TRNS,TRNS,
+             F7, F8,  F9,  F10,  F11, MUTE,VOLU,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,VOLD,
+                  TRNS,TRNS,TRNS,TRNS,TRNS,MNXT,
+             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,MPRV,
+                       TRNS,TRNS,TRNS,TRNS,MPLY,
         TRNS,TRNS,
         TRNS,
         TRNS,TRNS,TRNS
     ),
 
-    KEYMAP(  // layer 2 : keyboard functions
+    KEYMAP(  // layer 2: numpad
+        // left hand
+        FN0,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,
+                                      TRNS,TRNS,
+                                           TRNS,
+                                 TRNS,TRNS,TRNS,
+        // right hand
+             TRNS,TRNS,NLCK,PSLS,PAST,PMNS,TRNS,
+             TRNS,TRNS,  P7,  P8,  P9,PMNS,TRNS,
+                  TRNS,  P4,  P5,  P6,PPLS,TRNS,
+             TRNS,TRNS,  P1,  P2,  P3,PPLS,TRNS,
+                         P0,PDOT,PDOT,TRNS,TRNS,
+        TRNS,TRNS,
+        TRNS,
+        TRNS,TRNS,TRNS
+    ),
+
+    /*
+    KEYMAP(  // layer 3 : keyboard functions
         // left hand
         FN0, TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -87,27 +109,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TRNS,
         TRNS,TRNS,TRNS
     ),
-
-    KEYMAP(  // layer 3: numpad
-        // left hand
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,
-                                      TRNS,TRNS,
-                                           TRNS,
-                                 TRNS,TRNS,TRNS,
-        // right hand
-             TRNS,NLCK,PSLS,PAST,PAST,PMNS,BSPC,
-             TRNS,NO,  P7,  P8,  P9,  PMNS,BSPC,
-                  NO,  P4,  P5,  P6,  PPLS,PENT,
-             TRNS,NO,  P1,  P2,  P3,  PPLS,PENT,
-                       P0,  PDOT,SLSH,PENT,PENT,
-        TRNS,TRNS,
-        TRNS,
-        TRNS,TRNS,TRNS
-    ),
+    */
 
 };
 
@@ -121,10 +123,9 @@ enum function_id {
  */
 static const uint16_t PROGMEM fn_actions[] = {
     ACTION_FUNCTION(TEENSY_KEY),                    // FN0 - Teensy key
-    ACTION_LAYER_MOMENTARY(1),                      // FN1 - switch to Layer1
-    ACTION_LAYER_SET(2, ON_PRESS),                  // FN2 - set Layer2
-    ACTION_LAYER_TOGGLE(3),                         // FN3 - toggle Layer3 aka Numpad layer
-    ACTION_LAYER_SET(0, ON_PRESS),                  // FN4 - set Layer0
+    ACTION_LAYER_SET(0, ON_PRESS),                  // FN1 - Change to layer 0
+    ACTION_LAYER_SET(1, ON_PRESS),                  // FN2 - Change to layer 1
+    ACTION_LAYER_SET(2, ON_PRESS),                  // FN3 - Change to layer 2
 };
 
 void action_function(keyrecord_t *event, uint8_t id, uint8_t opt)
