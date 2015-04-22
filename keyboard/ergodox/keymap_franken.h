@@ -36,11 +36,11 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            HOME,
                                  SPC,ESC, END,
         // right hand
-             7, 8,   9,   0,   MINUS,   PPLS,   BSPC,
+             7, 8,   9,   0,   MINUS,   EQL,   BSPC,
              BSLS,Y,   U,   I,   O,   P,   LBRC,
                   H,   J,   K,   L,   SCLN,QUOT,
-             FN3, N,   M,   COMM,DOT, SLSH,RBRC,
-                       LEFT,DOWN,UP,  RGHT,ENT,
+             FN3, N,   M,   COMM,DOT, SLSH,RSFT,
+                       LEFT,DOWN,UP,  RGHT,RBRC,
         RALT,RCTL,
         PGUP,
         PGDN,ENT, SPC
@@ -124,7 +124,7 @@ enum function_id {
 static const uint16_t PROGMEM fn_actions[] = {
     ACTION_FUNCTION(TEENSY_KEY),                    // FN0 - Teensy key
     ACTION_LAYER_SET(0, ON_PRESS),                  // FN1 - Change to layer 0
-    ACTION_LAYER_SET(1, ON_PRESS),                  // FN2 - Change to layer 1
+    ACTION_LAYER_MOMENTARY(1),                  // FN2 - Change to layer 1 momentarily
     ACTION_LAYER_SET(2, ON_PRESS),                  // FN3 - Change to layer 2
 };
 
